@@ -1,13 +1,7 @@
 import pandas as pd
 import numpy as np
-import datetime as dt
-from sklearn import metrics
-from sklearn import linear_model
-from sklearn import neighbors
-from sklearn import preprocessing
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_squared_error
-from sklearn.feature_selection import RFE
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
@@ -35,9 +29,13 @@ def model_averages(y_model, X_model, y_predict, X_predict, n):
     """
 
     results_df = pd.DataFrame(y_predict)
-    for count in range(n):            
-        results_df[str(count)] = linearly_regress(y_model, X_model)[0].predict(X_predict)
+    MAEs = []
+    for count in range(n):      
+        model = linearly_regress(y_model, X_model)
+        results_df[str(count)] = model[0].predict(X_predict)
+        MAEs.append(model[2])
 
     results_df['averages'] = results_df.mean(axis = 1)
+    MAE = np.array(MAEs).mean()
 
-    return results_df
+    return [results_df, MAE] 
