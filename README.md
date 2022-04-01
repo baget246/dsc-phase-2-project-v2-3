@@ -13,7 +13,7 @@ Our data showed that there was a correlation between the Condition of the proper
 ## Modeling
 We decided to build a model that predicted the price of houses in "Good" or better condition, and use it on houses in "Bad" condition. This would give us a "Predicted Price" for the houses in "Bad" condition if they were to be renovated.
 
-Our model is a Multi-Linear Regression model, using several predictors to give us a prediction of the price of the houses if they were renovated. We were able to get to an R-squared of 0.869, showing that this model is accounting for a lot of the variance we see in Price.
+Our model is a Multi-Linear Regression model, using several predictors to give us a prediction of the price of the houses if they were renovated. We were able to get to an R-squared of 0.869, showing that this model is accounting for 87% of the variance we see in Price.
 
 We conducted a Logarithmic Transformation to the "Price" column in order to counteract the skew and improve our model, and we removed the top 5% of the most expensive houses to remove the outliers. We formatted the Zip code as a Nominal Categorical variable.
 
