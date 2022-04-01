@@ -27,15 +27,17 @@ def model_averages(y_model, X_model, y_predict, X_predict, n):
     Creates n models on X_model for y_model and gets n predictions based for X_predict
     Returns a np array of average results over n models
     """
-
     results_df = pd.DataFrame(y_predict)
     MAEs = []
+    weights = pd.DataFrame()
+
     for count in range(n):      
         model = linearly_regress(y_model, X_model)
+        weights[str(count)] = model[0].coef_
         results_df[str(count)] = model[0].predict(X_predict)
         MAEs.append(model[2])
 
     results_df['averages'] = results_df.mean(axis = 1)
     MAE = np.array(MAEs).mean()
 
-    return [results_df, MAE] 
+    return [results_df, MAE, weights] 
